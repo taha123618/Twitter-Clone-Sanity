@@ -18,14 +18,6 @@ export type TweetBody = {
 
 // Foe Comments
 
-export type CommentBody = {
-  _createdAt: string;
-  _id: string;
-  _rev: string;
-  _type: "comment";
-  _updatedAt: string;
-};
-
 export interface Comment extends CommentBody {
   _createdAt: string;
   _id: string;
@@ -37,3 +29,10 @@ export interface Comment extends CommentBody {
     _type: "reference";
   };
 }
+export type CommentBody = {
+  _createdAt: string;
+  _id: string;
+  _rev: string;
+  _type: "comment";
+  _updatedAt: string;
+};

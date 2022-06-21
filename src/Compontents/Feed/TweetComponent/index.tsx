@@ -69,12 +69,15 @@ const TweetComponent = ({ tweets }: Props) => {
         </div>
         <div className="flex cursor-pointer items-center space-x-3 text-gray-400">
           <HeartIcon className="h-5 w-5" />
+          <p>{comments.length}</p>
         </div>
         <div className="flex cursor-pointer items-center space-x-3 text-gray-400">
           <SwitchHorizontalIcon className="h-5 w-5" />
+          <p>{comments.length}</p>
         </div>
         <div className="flex cursor-pointer items-center space-x-3 text-gray-400">
           <UploadIcon className="h-5 w-5" />
+          <p>{comments.length}</p>
         </div>
       </div>
 

@@ -7,6 +7,7 @@ import Head from "next/head";
 import { SanityClient } from "../sanityConfig/client";
 import { fetchTweets } from "../utils/fetchtweets";
 import { Tweet } from "../typing";
+import { Toaster } from "react-hot-toast";
 
 // typing data file
 interface Props {
@@ -19,6 +20,8 @@ const index = ({ tweets }: Props) => {
       <Head>
         <title>Twitter-Clone</title>
       </Head>
+      <Toaster />
+
       {/*for responsive thats why we use main */}
       <main className="grid grid-cols-9 ">
         {/* sidebar left  */}
