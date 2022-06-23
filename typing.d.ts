@@ -30,9 +30,13 @@ export interface Comment extends CommentBody {
   };
 }
 export type CommentBody = {
-  _createdAt: string;
-  _id: string;
-  _rev: string;
-  _type: "comment";
-  _updatedAt: string;
+  // _createdAt: string;
+  // _id: string;
+  // _rev: string;
+  // _type: "comment";
+  // _updatedAt: string;
+  username: string;
+  profileImg: string;
+  comment: string;
+  tweetId: string;
 };

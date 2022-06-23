@@ -9,6 +9,7 @@ import {
   UploadIcon,
 } from "@heroicons/react/outline";
 import { fetchComments } from "../../../../utils/fetchComments";
+import { useSession } from "next-auth/react";
 
 // typing data file
 interface Props {
@@ -16,7 +17,15 @@ interface Props {
 }
 
 const TweetComponent = ({ tweets }: Props) => {
+  const { data: session } = useSession();
+
   const [comments, setComments] = useState<Comment[]>([]);
+
+  // for comment last logic
+
+  const [commentBoxVisible, setCommentBoxVisible] = useState<boolean>(false);
+  const [input, setInput] = useState<string>("");
+
   // fetching the comments through useEffect
   const refreshComments = async () => {
     const comments: Comment[] = await fetchComments(tweets._id);
@@ -28,6 +37,10 @@ const TweetComponent = ({ tweets }: Props) => {
   }, []);
 
   console.log(comments);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
 
   return (
     <div className="flex flex-col space-x-3 border-y border-gray-100 p-5 ">
@@ -63,7 +76,10 @@ const TweetComponent = ({ tweets }: Props) => {
       </div>
       {/* icons  */}
       <div className="mt-5 flex justify-between">
-        <div className="flex cursor-pointer items-center space-x-3 text-gray-400">
+        <div
+          onClick={() => session && setCommentBoxVisible(!commentBoxVisible)}
+          className="flex cursor-pointer items-center space-x-3 text-gray-400"
+        >
           <ChatAlt2Icon className="h-5 w-5" />
           <p>{comments.length}</p>
         </div>
@@ -80,8 +96,30 @@ const TweetComponent = ({ tweets }: Props) => {
           <p>{comments.length}</p>
         </div>
       </div>
-
       {/* Comment Box Logic  */}
+
+      {/* last logic in comments  */}
+
+      {commentBoxVisible && (
+        <form onSubmit={handleSubmit} className="mt-3 flex space-x-3">
+          <input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            className="flex-1 rounded-lg bg-gray-100 p-2 outline-none"
+            type="text"
+            placeholder="Write a comment..."
+          />
+          <button
+            disabled={!input}
+            type="submit"
+            className="text-twitter disabled:text-gray-200"
+          >
+            Post
+          </button>
+        </form>
+      )}
+
+      {/* last End  logic in comments */}
       {comments?.length > 0 && (
         <div
           className="my-2 mt-5 max-h-44 space-y-5 overflow-y-scroll
