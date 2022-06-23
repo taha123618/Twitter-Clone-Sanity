@@ -17,5 +17,7 @@ export const urlFor = (source: String) => {
   builder.image(source);
 };
 
+// This Way
+
 // export const urlFor = (source) =>
 //   createImageUrlBuilder(SanityClient).image(source);
